@@ -1,0 +1,52 @@
+.label {
+  padding: .3rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.label:hover {
+  background-color: blue;
+}
+
+.input {
+  display: none;
+}
+
+.input:checked + .span::after {
+  visibility: visible;
+}
+
+.input:checked + .span::before,
+.input:hover + .span::before {
+  border-color: black;
+}
+
+.span {
+  position: relative;
+  top: 3px;
+}
+
+.span::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid blue;
+  border-radius: 4px;
+}
+
+.span::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  mask-image: url('../../../public/assets/icons/check.svg');
+  mask-repeat: no-repeat;
+  mask-size: 12px;
+  background-color: blue;
+  width: 12px;
+  height: 12px;
+  top: 4px;
+  left: 3px;
+  visibility: hidden;
+}

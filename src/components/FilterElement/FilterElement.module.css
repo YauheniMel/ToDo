@@ -1,0 +1,40 @@
+.button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin-right: 22px;
+  background-color: transparent;
+  font-size: 1rem;
+  border: none;
+}
+
+
+.button::before,
+.button::after {
+  content: '';
+  position: absolute;
+  right: -14px;
+  height: 8px;
+  width: 8px;
+  mask-size: 8px;
+  background-color: blue;
+}
+
+.button::before {
+  top: 2px;
+  mask-image: url(../../../public/assets/icons/arrow.svg);
+  transform: rotate(180deg);
+}
+
+.button::after {
+  bottom: 2px;
+  mask-image: url(../../../public/assets/icons/arrow.svg);
+}
+
+.decrease::before {
+  background-color: gray;
+}
+
+.increase::after {
+  background-color: gray;
+}
