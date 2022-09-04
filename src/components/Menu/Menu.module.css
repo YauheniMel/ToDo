@@ -1,20 +1,37 @@
+@import '../../styles/colors.css';
+
 .wrap {
   position: absolute;
-  width: 50%;
+  max-width: 250px;
   right: 0;
   top: 0;
-  height: 100%;
-  background-color: gray;
+  z-index: 1;
+  background-color: var(--gray);
+  overflow: hidden;
 }
 
 .button {
-  width: 20px;
-  height: 20px;
-  mask-image: url('../../../public/assets/icons/setting.svg');
-  mask-repeat: no-repeat;
-  mask-position: center;
+  width: 100%;
+  text-align: left;
+}
+
+.button:hover {
+  border: 1px solid transparent;
+  border-left: 1px solid var(--secondary);
 }
 
 .list {
   list-style: none;
+}
+
+.show {
+  height: 100%;
+  transition-duration: .3s;
+  transition-timing-function: ease-out;
+}
+
+.hide {
+  height: 0;
+  transition-duration: .3s;
+  transition-timing-function: ease-out;
 }

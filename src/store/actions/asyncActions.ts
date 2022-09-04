@@ -7,46 +7,40 @@ import { Filter, NewToDoType, ToDoType } from '../../types';
 import {
   addToDoAction,
   deleteToDoAction,
-  setIsLoading,
+  setIdToDoInProcessUpdating,
+  setIdToDoNotInProcessUpdating,
   setTodosAction,
   updateToDoAction,
 } from './actions';
-import { ADD_TODO } from './constants';
 
-export const fetchToDosThunk = (type: Filter) => (dispatch: AppDispatchType) => {
-  setIsLoading(true);
-
-  fetchData(type)
+export const fetchToDosThunk = (filter: Filter) => (dispatch: AppDispatchType) => {
+  fetchData(filter)
     .then((todos) => dispatch(setTodosAction(todos)))
-    .catch((error) => alert(error))
-    .finally(() => setIsLoading(false));
+    .catch((error) => alert(error));
 };
 
 export const createToDoThunk = (todo: NewToDoType) => (dispatch: AppDispatchType) => {
-  setIsLoading(true);
-
   postToDo(todo)
     .then((newToDo) => dispatch(addToDoAction(newToDo)))
-    .catch((error) => alert(error))
-    .finally(() => setIsLoading(false));
+    .catch((error) => alert(error));
 };
 
 export const updateToDoThunk = (todo: ToDoType) => (dispatch: AppDispatchType) => {
-  setIsLoading(true);
+  dispatch(setIdToDoInProcessUpdating(todo.id));
 
   updateToDo(todo)
     .then((updatedTodo) => {
       dispatch(updateToDoAction(updatedTodo));
     })
     .catch((error) => alert(error))
-    .finally(() => setIsLoading(false));
+    .finally(() => dispatch(setIdToDoNotInProcessUpdating(todo.id)));
 };
 
 export const deleteToDoThunk = (id: string) => (dispatch: AppDispatchType) => {
-  setIsLoading(true);
+  dispatch(setIdToDoInProcessUpdating(id));
 
   deleteToDo(id)
     .then((deletedToDo) => dispatch(deleteToDoAction(deletedToDo.id)))
     .catch((error) => alert(error))
-    .finally(() => setIsLoading(false));
+    .finally(() => dispatch(setIdToDoNotInProcessUpdating(id)));
 };

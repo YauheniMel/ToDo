@@ -1,23 +1,110 @@
+@import '../../styles/colors';
+
 .header {
+  z-index: 1000;
   display: flex;
-  justify-content: space-between;
-  /*  */
-  background-color: gray;
-  padding: 1rem;
-  /*  */
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  position: sticky;
+  top: 0;
+}
+
+.form {
+  width: 60%;
+}
+
+.d_block {
+  transform: translateY(0);
+  transition-duration: .3s;
+  transition-timing-function: ease-out;
+}
+
+.d_none {
+  transform: translateY(-200%);
+  transition-duration: .3s;
+  transition-timing-function: ease-in;
+}
+
+.form strong {
+  display: inline-block;
+  position: absolute;
+  transform: translateY(-100%);
+  right: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.form form {
+  position: relative;
+  display: flex;
+  min-width: 300px;
+}
+
+.form input {
+  font-size: 100%;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  padding-right: 3rem;
+  font-size: 2rem;
+  background-color: var(--gray);
+  padding-left: .7rem;
+  color: var(--white);
+}
+
+.btn_submit {
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  width: 2rem;
+  height: 100%;
+  background-color: transparent;
+  border: 0;
+  mask-image: url('../../../public/assets/icons/ok.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: var(--white);
+  margin-right: .3rem;
+}
+
+.btn_submit:hover {
+  background-color: var(--secondary);
 }
 
 .button {
+  position: fixed;
+  top: 1.7rem;
+  right: 1.7rem;
   cursor: pointer;
   width: 70px;
   height: 70px;
+  padding: .7rem;
   border-radius: 50%;
   border: none;
   background-color: transparent;
+  transform: rotate(45deg);
+  transition-duration: .3s;
+}
+
+.hide {
+  transform: rotate(0deg);
+  transition-duration: .3s;
 }
 
 .button:hover {
-  background-color: blue;
+  transform: rotate(45deg) scale(1.7);
+  transition-duration: .3s;
+}
+
+.hide:hover {
+  transform: rotate(0deg) scale(1.7);
+  transition-duration: .3s;
+}
+
+.button:hover .button_content {
+  background-color: var(--white);
+  transition-duration: .3s;
 }
 
 .button_content {
@@ -27,12 +114,7 @@
   mask-image: url('../../../public/assets/icons/add.svg');
   mask-repeat: no-repeat;
   mask-position: center;
-  background-color: blue;
+  background-color: var(--gray);
   border-radius: 50%;
+  transition-duration: .3s;
 }
-
-.button_content:hover {
-  background-color: gray;
-}
-
-

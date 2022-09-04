@@ -1,7 +1,21 @@
+@import './styles/colors';
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body,
+.App {
+  height: 100vh;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--back);
 }
 
 body {
@@ -11,9 +25,46 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--white);
 }
 
 .container {
   margin: 0 auto;
   max-width: 800px;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: var(--back);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary);
+}
+
+button {
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--white);
+  padding: .3rem .7rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+button:hover {
+  cursor: pointer;
+  border: 1px solid var(--secondary);
+}
+
+textarea {
+  background-color: transparent;
+  color: var(--secondary);
+  outline: none;
+  border: none;
 }

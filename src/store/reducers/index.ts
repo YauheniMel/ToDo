@@ -1,11 +1,13 @@
+import { AnyAction } from 'redux';
+import { AppStateType } from '..';
 import { ToDoReducerType } from '../../types';
 import {
   ADD_TODO,
   DELETE_TODO,
-  SET_ERROR,
+  SET_ID_TODO_IN_PROCESS_UPDATING,
+  SET_ID_TODO_NOT_IN_PROCESS_UPDATING,
   SET_IS_COMPLETED_TODO,
   SET_IS_FAVOURITE_TODO,
-  SET_IS_LOADING,
   SET_IS_NOT_COMPLETED_TODO,
   SET_IS_NOT_FAVOURITE_TODO,
   SET_TODOS,
@@ -14,11 +16,10 @@ import {
 
 const initialState: ToDoReducerType = {
   todos: [],
-  isLoading: false,
-  error: null,
+  idToDosInProcessUpdating: [],
 };
 
-const mainReducer = (state = initialState, action: any) => {
+const mainReducer = (state = initialState, action: AnyAction): ToDoReducerType => {
   switch (action.type) {
     case SET_TODOS: {
       return {
@@ -119,16 +120,18 @@ const mainReducer = (state = initialState, action: any) => {
         todos,
       };
     }
-    case SET_IS_LOADING: {
+    case SET_ID_TODO_IN_PROCESS_UPDATING: {
       return {
         ...state,
-        isLoading: action.payload,
+        idToDosInProcessUpdating: [...state.idToDosInProcessUpdating, action.payload],
       };
     }
-    case SET_ERROR: {
+    case SET_ID_TODO_NOT_IN_PROCESS_UPDATING: {
       return {
         ...state,
-        error: action.payload,
+        idToDosInProcessUpdating: state.idToDosInProcessUpdating.filter(
+          (id) => id !== action.payload
+        ),
       };
     }
     default:

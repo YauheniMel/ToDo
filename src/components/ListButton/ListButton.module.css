@@ -1,0 +1,9 @@
+.wrap {
+  width: 100%;
+  text-align: left;
+}
+
+.wrap:hover {
+  border: 1px solid transparent;
+  border-left: 1px solid var(--secondary);
+}

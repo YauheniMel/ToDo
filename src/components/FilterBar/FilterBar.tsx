@@ -1,38 +1,39 @@
 import { FC } from 'react';
-import fetchData from '../../API/fetchData';
-import { AppDispatchType } from '../../store';
-import { fetchToDosThunk } from '../../store/actions/asyncActions';
 import { Filter } from '../../types';
 import FilterElement from '../FilterElement/FilterElement';
-import classes from './FilterBarBar.module.css';
+import classes from './FilterBar.module.css';
 
 interface IFilterBar {
-  dispatch: AppDispatchType;
+  setFilter: (filter: Filter) => void;
+  filter: Filter;
 }
 
-const FilterBar: FC<IFilterBar> = ({ dispatch }) => {
-  function handleFilterToDos(filterType: Filter) {
-    console.log(filterType);
-    dispatch(fetchToDosThunk(filterType));
-  }
-
+const FilterBar: FC<IFilterBar> = ({ setFilter, filter }) => {
   return (
-    <div className='container'>
-      <FilterElement
-        handleFilter={handleFilterToDos}
-        type={Filter.completed}
-        title='Выполненные задачи'
-      />
-      <FilterElement
-        handleFilter={handleFilterToDos}
-        type={Filter.uncompleted}
-        title='Задачи в работе'
-      />
-      <FilterElement
-        handleFilter={handleFilterToDos}
-        type={Filter.favourite}
-        title='Избранные задачи'
-      />
+    <div className={`container ${filter === Filter.all || classes.active} ${classes.wrap}`}>
+      <div>
+        <FilterElement
+          filter={filter}
+          setFilter={setFilter}
+          type={Filter.completed}
+          title='Выполненные задачи'
+        />
+        <FilterElement
+          filter={filter}
+          setFilter={setFilter}
+          type={Filter.uncompleted}
+          title='Задачи в работе'
+        />
+        <FilterElement
+          filter={filter}
+          setFilter={setFilter}
+          type={Filter.favourite}
+          title='Избранные задачи'
+        />
+      </div>
+      {filter === Filter.all || (
+        <FilterElement filter={filter} setFilter={setFilter} type={Filter.all} title='Сбросить' />
+      )}
     </div>
   );
 };

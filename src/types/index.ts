@@ -3,16 +3,14 @@ export interface ToDoType {
   content: string;
   isFavourite: boolean;
   isCompleted: boolean;
+  createdAt: string;
 }
 
 export type NewToDoType = Pick<ToDoType, 'content' & 'isCompleted' & 'isFavourite'>;
 
-export type ErrorType = null | { message: string };
-
 export interface ToDoReducerType {
-  todos: ToDoType[] | [];
-  error: ErrorType;
-  isLoading: boolean;
+  todos: ToDoType[];
+  idToDosInProcessUpdating: string[];
 }
 
 export enum Filter {
@@ -21,3 +19,10 @@ export enum Filter {
   uncompleted = 'uncompleted',
   favourite = 'favourite',
 }
+
+export interface Action<T> {
+  readonly type: string;
+  readonly payload?: T;
+}
+
+export type ValidateType = { message: string } | null;

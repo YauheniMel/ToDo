@@ -1,0 +1,16 @@
+@import '../../styles/colors';
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
+  margin-bottom: 1rem;
+}
+
+.active {
+  border-left: 2px solid var(--secondary);
+  border-right: 2px solid var(--secondary);
+}
